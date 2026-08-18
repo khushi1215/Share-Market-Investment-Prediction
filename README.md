@@ -1,4 +1,4 @@
-# Share Market Company Prediction — Live Investment Scoring Tool
+# Share Market Investment Prediction — Live Investment Scoring Tool
 
 **A transparent, rule-based tool that scores publicly listed companies 0–100 using live market data — every score explainable, no black box.**
 

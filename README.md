@@ -1,8 +1,22 @@
 # Share Market Company Prediction — Live Investment Scoring Tool
 
-A Streamlit web app that scores publicly listed companies on a 0–100 investment scale using live market data — helping investors quickly gauge a stock's current position and stability at a glance.
+**A transparent, rule-based tool that scores publicly listed companies 0–100 using live market data — every score explainable, no black box.**
 
-> **Note on naming:** despite "Prediction" in the repo name, this tool does **not** use a machine learning model. It's a transparent, rule-based scoring system built on live financial data. No black-box predictions — every score can be traced back to a simple, explainable formula. (Repo rename to reflect this may follow — see Future Work.)
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
+![Streamlit](https://img.shields.io/badge/UI-Streamlit-FF4B4B)
+![yfinance](https://img.shields.io/badge/Data-yfinance-green)
+![License](https://img.shields.io/badge/License-MIT-lightgrey)
+
+> **Note on naming:** despite "Prediction" in the repo name, this tool does **not** use a machine learning model. It's a transparent, rule-based scoring system built on live financial data — every score can be traced back to a simple, explainable formula. (Repo rename to reflect this may follow — see [Future Work](#limitations--future-work).)
+
+---
+
+## ✨ Highlights
+
+- ⚡ **Instant scoring** — enter any ticker, get a 0–100 investment score in seconds using live data
+- 🔍 **Fully explainable** — an in-app "How is this score calculated?" panel shows the exact formula behind every score, no hidden logic
+- 📈 **Live market data** — pulls current price, 52-week range, and market cap directly via Yahoo Finance
+- 🧮 **Deliberately simple, honestly labeled** — a fundamentals heuristic, not a black-box ML prediction, and the README says so upfront
 
 ## Demo
 
@@ -10,12 +24,14 @@ A Streamlit web app that scores publicly listed companies on a 0–100 investmen
 
 Enter a ticker (e.g. `tcs`), get an instant score with category rating — and an expandable "How is this score calculated?" section built right into the UI, so the logic is never hidden from the user.
 
-## What it does
+## What It Does
 
 Enter any stock ticker, and the app:
 1. Fetches live market data (current price, 52-week high/low, market cap) via Yahoo Finance
 2. Computes an investment score using a weighted formula
 3. Displays the score with a Strong / Moderate / Weak rating
+
+---
 
 ## The Scoring Logic
 
@@ -27,31 +43,22 @@ investment_score = 0.6 × price_position + 0.4 × stability_score
 ```
 
 **Why this formula:**
-- **Price position (60% weight)** — shows where the stock currently sits within its own yearly range. A stock near its 52-week low may be undervalued (or falling for a reason); near its high may signal strength (or be overbought.)
+- **Price position (60% weight)** — shows where the stock currently sits within its own yearly range. A stock near its 52-week low may be undervalued (or falling for a reason); near its high may signal strength (or be overbought).
 - **Stability score (40% weight)** — larger market cap generally means a more established, less volatile company. Log scale is used because market cap spans many orders of magnitude (a $10M company vs a $1T company), so raw values would swamp the score.
 
 This is a fundamentals-based heuristic, not a statistical or ML prediction — it doesn't forecast future price movement, it summarizes current standing.
 
 ## Tech Stack
 
-- Python
-- Streamlit (UI)
-- yfinance (live market data)
+| Layer | Technology |
+|---|---|
+| UI | Streamlit |
+| Live Data | yfinance (Yahoo Finance) |
+| Language | Python |
 
-## Project Structure
+---
 
-```
-Share-Market-Company-Prediction/
-│
-├── app.py                      # Streamlit UI
-├── src/
-│   ├── live_data_fetch.py      # Pulls live data via yfinance
-│   └── model.py                # Investment score calculation
-├── requirements.txt
-└── README.md
-```
-
-## Setup
+## Quick Start
 
 **1. Clone the repository**
 ```bash
@@ -83,6 +90,21 @@ App opens at `http://localhost:8501`
 2. View the computed investment score and rating
 3. Try different tickers to compare companies
 
+---
+
+## Project Structure
+
+```
+Share-Market-Company-Prediction/
+│
+├── app.py                      # Streamlit UI
+├── src/
+│   ├── live_data_fetch.py      # Pulls live data via yfinance
+│   └── model.py                # Investment score calculation
+├── requirements.txt
+└── README.md
+```
+
 ## Limitations & Future Work
 
 - **Two-factor model is simplistic** — real fundamental analysis considers P/E ratio, debt-to-equity, earnings growth, sector context, and more. Current formula is intentionally simple and explainable, not comprehensive.
@@ -94,3 +116,7 @@ App opens at `http://localhost:8501`
 ## Disclaimer
 
 This tool is for educational purposes only and does not constitute financial advice. Investment scores are based on a simplified heuristic and should not be the sole basis for any investment decision.
+
+## License
+
+MIT — free to use, modify, and learn from.
